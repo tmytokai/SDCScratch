@@ -127,11 +127,19 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     public void PushRoute( string value )
     {
         if( State == StateGame.Route ){
             var dir = (Car.Direction)int.Parse(value);
             _mapManager.PushRoute(dir);
+        }
+    }
+
+    public void ReturnToStart()
+    {
+        if( State == StateGame.Route ){
+            _mapManager.ReturnToStart();
         }
     }
 
@@ -272,6 +280,9 @@ public class GameManager : MonoBehaviour
         if( Input.GetKeyDown(KeyCode.M)){
             ShowRoute();
         }
+        if( Input.GetKeyDown(KeyCode.N)){
+            ReturnToStart();
+        }        
         if( Input.GetKeyDown(KeyCode.A)){
             About();
         }

@@ -48,6 +48,8 @@ JsSetGoalXY: function(x,y){
 },
 
 JsSetXY: function(x,y){
+        myscratchunity.preX = myscratchunity.X;
+        myscratchunity.preY = myscratchunity.Y;
         myscratchunity.X = x;
         myscratchunity.Y = y;
 },

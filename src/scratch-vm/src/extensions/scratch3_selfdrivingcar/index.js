@@ -71,6 +71,15 @@ class Scratch3SelfDrivingCar {
                 },
 
                 {
+                    opcode: 'ReturnToStart',
+                    blockType: BlockType.COMMAND,
+                    text: formatMessage({
+                        id: 'selfdrivingcar.ReturnToStart',
+                        default: 'Return To Start',
+                    }),
+                },
+
+                {
                     opcode: 'Up',
                     blockType: BlockType.COMMAND,
                     text: formatMessage({
@@ -237,6 +246,24 @@ class Scratch3SelfDrivingCar {
                 },
 
                 {
+                    opcode: 'PreX',
+                    blockType: BlockType.REPORTER,
+                    text: formatMessage({
+                        id: 'selfdrivingcar.PreX',
+                        default: 'PreX',
+                    }),
+                },
+
+                {
+                    opcode: 'PreY',
+                    blockType: BlockType.REPORTER,
+                    text: formatMessage({
+                        id: 'selfdrivingcar.PreY',
+                        default: 'PreY',
+                    }),
+                },
+
+                {
                     opcode: 'Reward',
                     blockType: BlockType.REPORTER,
                     text: formatMessage({
@@ -382,6 +409,13 @@ class Scratch3SelfDrivingCar {
         }
     }
 
+    ReturnToStart (args, util){
+        if( ! this.myscratchunity.ReturnToStart() ){
+            console.log("waiting...");
+            util.yieldTick();
+        }
+    }
+
     Up (args, util){
         if( ! this.myscratchunity.Up() ){
             console.log("waiting...");
@@ -475,6 +509,14 @@ class Scratch3SelfDrivingCar {
 
     Y () {
         return this.myscratchunity.Y;
+    }
+
+    PreX () {
+        return this.myscratchunity.preX;
+    }
+
+    PreY () {
+        return this.myscratchunity.preY;
     }
 
     Reward () {

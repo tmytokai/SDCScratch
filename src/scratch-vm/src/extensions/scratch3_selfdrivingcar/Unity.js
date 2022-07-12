@@ -79,6 +79,8 @@ class Unity{
         this.goalY = 0;
         this.X = 0;
         this.Y = 0;
+        this.preX = 0;
+        this.preY = 0;
         this.reward = 0;
 
         this.speed = 0;
@@ -272,6 +274,16 @@ class Unity{
 
 	if( this.stateRoute || this.stateGame ){
             this.instance.SendMessage("Manager", "CommandShowRoute");
+        }
+        return true;
+    }
+
+    ReturnToStart (){
+	console.log("ReturnToStart");
+	if( this.stateTitle == false && this.stateRoute == false && this.stateGame == false ) return false;
+
+	if( this.stateRoute ){
+            this.instance.SendMessage("Manager", "CommandReturnToStart");
         }
         return true;
     }

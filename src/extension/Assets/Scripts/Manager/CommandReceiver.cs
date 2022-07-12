@@ -38,6 +38,11 @@ public class CommandReceiver : MonoBehaviour
         if( _gameManager is not null ) _gameManager.PushRoute(value);
     }
 
+    public void CommandReturnToStart()
+    {
+        if( _gameManager is not null ) _gameManager.ReturnToStart();
+    }
+
     public void CommandRun()
     {
         if( _gameManager is not null ) _gameManager.Run();

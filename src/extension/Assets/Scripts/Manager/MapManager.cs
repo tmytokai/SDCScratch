@@ -510,6 +510,7 @@ public class MapManager : MonoBehaviour
         _idxRouteLoop = -1;
         JsSetReward( (int)_Reward.Init );
         JsSetXY( _routeX, _routeY );
+        JsSetXY( _routeX, _routeY ); // to reset myscratchunity.preX/preY
     }
 
     public void MakeRouteLoop()
@@ -519,6 +520,12 @@ public class MapManager : MonoBehaviour
             _idxRouteLoop = -2;
         }
         else if(_idxRouteLoop == -1 ) Route.Clear();
+    }
+
+    public void ReturnToStart()
+    {
+        _ClearRoute();
+        _renderRoute = true;
     }
 
     public void PushRoute(Car.Direction dir )
