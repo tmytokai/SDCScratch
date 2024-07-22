@@ -7,12 +7,14 @@ public class MyCar : MonoBehaviour, InterfaceCar
     public bool AutoChangeSpeed = false;
     public bool AutoCreateRoute = false;
 
+    public float RedSignalMargin = 5.0f;
+
     GameManager _gameManager = null;
     MapManager _mapManager = null;
     SignalManager _signalManager = null;
     Car _car;
     InterfaceCar _aicar = null;
-    float _preSignalDistance;
+    bool _passRedSignal = false;
     int _prePosX = 0;
     int _prePosY = 0;
     int _preTimeWaiting = -1;
@@ -110,7 +112,7 @@ public class MyCar : MonoBehaviour, InterfaceCar
                     (posX == 2 && posY == 2 )
                 ){
                     if(_car.MapX == _mapManager.GoalX && _car.MapY == _mapManager.GoalY ) _gameManager.GameOver( GameManager.ReasonGameover.Clear );
-                    if( _car.SensorSignal.distance == 0 && _preSignalDistance > 0 && _car.SensorSignal.state == Car.SensorSignalState.Red ){
+                    if( _car.SensorSignal.distance == 0 && _car.SensorSignal.state == Car.SensorSignalState.Red && _passRedSignal == false ){
                         _gameManager.GameOver( GameManager.ReasonGameover.RedSignal );
                     }
                 }
@@ -124,9 +126,16 @@ public class MyCar : MonoBehaviour, InterfaceCar
                     _gameManager.GameOver( GameManager.ReasonGameover.Hit );
                 }
 
-                _preSignalDistance = _car.SensorSignal.distance;
                 _prePosX = _car.PositionX[(int)Car.TransformPosition.Front];
                 _prePosY = _car.PositionY[(int)Car.TransformPosition.Front];
+            }
+
+            if(_car.SensorSignal.distance > RedSignalMargin){
+                _passRedSignal = false;
+            }
+            else if(_car.SensorSignal.state == Car.SensorSignalState.Yellow)
+            {
+                _passRedSignal = true;
             }
         }
         else _aicar.Move();

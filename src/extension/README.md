@@ -1,6 +1,6 @@
-(1) Download NotoSansMono-Bold.ttf from https://fonts.google.com/noto/specimen/Noto+Sans+Mono , and import it into 'src/extension/Assets/Fonts/'
+(1) Download NotoSansMono-Bold.ttf from https://fonts.google.com/noto/specimen/Noto+Sans+Mono , and move it into 'src/extension/Assets/Fonts/'
 
-(2) Install Unity Editor 2021.2.11f1 or higher, and open 'src/extension/'
+(2) Install Unity Editor 2022.3.38f1 or higher, and open 'src/extension/'
 
 (3) import assets from Asset Store:
 
